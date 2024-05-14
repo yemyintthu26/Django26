@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}
+    ecommerce order list
+{% endblock title %}
+
+
+{% block body %}
+
+<div class="bg-gray-100 font-sans">
+    <div class="container mx-auto my-10 p-8 bg-white shadow-md">
+        <h1 class="text-3xl font-bold mb-8">My Order List</h1>
+        
+        <div class="flex flex-col">
+        {% for o in orders %}
+          <div class="bg-gray-200 p-4 rounded-md my-5">
+            <div>
+                <a href="#" class="mt-4 bg-red-500 text-white py-2 px-4 rounded-full hover:bg-blue-700"> Cancel </a>
+                <h3> Order Id   : <span class="font-bold">{{o.id}}</span> </h3>
+                <h3> Date       : <span class="font-bold">{{o.created_at}}</span> </h3>
+                <h3> Name       : <span class="font-bold">{{o.user}}</span> </h3>
+                <h3> Phone      : <span class="font-bold">{{o.phone}}</span> </h3>
+                <h3> Address    : <span class="font-bold">{{o.address}}</span> </h3>
+                <br/>
+                <h2> Status    : <span class="font-bold">{{o.status}}</span> </h2>
+                </br/>
+                <table class="min-w-full  divide-gray-200">
+                    <thead>
+                      <tr>
+                        <td class="py-2 bg-gray-100 font-bold"> id </td>
+                        <td class="py-2 bg-gray-100 font-bold"> Image </td>
+                        <td class="py-2 bg-gray-100 font-bold"> Name </td>
+                        <td class="py-2 bg-gray-100 font-bold"> Price </td>
+                        <td class="py-2 bg-gray-100 font-bold"> Qty </td>
+                        <td class="py-2 bg-gray-100 font-bold"> Total </td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for p in o.product %}
+                      <tr>
+                        <td class="py-2"> {{forloop.counter}} </td>
+                        <td><img src="{{p.image}}" alt="Product Image" class="h-16 object-cover rounded-md"></td>
+                        <td class="py-2"> {{p.name}} </td>
+                        <td class="py-2"> {{p.price}} </td>
+                        <td class="py-2"> {{p.qty}} </td>
+                        <td class="py-2"> {{p.total}} </td>
+                      </tr>
+                      {% endfor %}
+                      <tr>
+                        <td colspan="3"/>
+                        <td class="py-2 font-bold"> Total </td>
+                        <td class="py-2 font-bold"> {{o.total_qty}} </td>
+                        <td class="py-2 font-bold"> {{o.total_price}} </td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+          </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock body %}

@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>{% block title %}{% endblock title %}</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+
+        {% include "header.html" %}
+
+        {% if messages %}
+            <div class="fixed top-0 left-3/4 transform -translate-x-3/4 mt-4 w-full max-w-sm">
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }} mb-4 bg-opacity-75 text-white px-6 py-4 border-0 rounded relative">
+                        <span class="text-xl inline-block mr-5 align-middle">
+                            {{ message }}
+                        </span>
+                        <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onclick="closeAlert(this)">
+                            <span>×</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="container mx-auto">
+            {% block body %}{% endblock body %}
+        </div>
+
+        {% include "footer.html" %}
+    </body>
+
+</html>

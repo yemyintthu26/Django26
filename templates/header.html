@@ -1,0 +1,72 @@
+<nav class="bg-blue-800 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        
+        <a href="#" class="text-white text-xl font-bold">Your Logo</a>
+        
+        <div class="flex flex-row space-x-4">
+            <a href="/product/list/" class="text-white">Home</a>
+            
+            <div class="relative group1">
+                <a href="#" class="text-white group1-hover:text-gray-300"> Category </a>
+                    <form class="absolute hidden bg-white text-gray-800 rounded-md mt-2 space-y-2 py-2" action="/product/list/">
+                        {% for c in cat %}
+                            <button class="block px-4 py-2" name="c" value="{{c.id}}" type="submit">{{c.name}}</button>
+                        {% endfor %}
+                    </form>
+                </a>
+            </div>
+
+            <div class="relative group2">
+                <a href="#" class="text-white group2-hover:text-gray-300"> {{ user.username }}</a>
+                <div class="absolute hidden bg-white text-gray-800 rounded-md mt-2 space-y-2 py-2">
+                    <a href="/profile/" class="block px-4 py-2">Profile</a>
+                    <a href="/settings/" class="block px-4 py-2">Settings</a>
+                </div>
+            </div>
+
+            <a href="/product/orderList/" class="text-white">MyOrder</a>
+
+            <a href="/logout/" class="text-white">Logout</a>
+
+            <div class="relative" onClick="window.location='/product/cartList/';">
+                <div class="t-0 absolute left-3">
+                    <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
+                        {{ count }}
+                    </p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="file: mt-4 h-6 w-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                </svg>
+            </div>
+           
+        </div>
+    </div>
+</nav>
+<script>
+    function closeAlert(element) {
+      element.parentElement.remove();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var dropdown1 = document.querySelector('.group1');
+        var dropdown2 = document.querySelector('.group2');
+
+        dropdown1.addEventListener('mouseenter', function () {
+            dropdown1.querySelector('.absolute').classList.remove('hidden');
+        });
+
+        dropdown1.addEventListener('mouseleave', function () {
+            dropdown1.querySelector('.absolute').classList.add('hidden');
+        });
+
+        dropdown2.addEventListener('mouseenter', function () {
+            dropdown2.querySelector('.absolute').classList.remove('hidden');
+        });
+
+        dropdown2.addEventListener('mouseleave', function () {
+            dropdown2.querySelector('.absolute').classList.add('hidden');
+        });
+
+    });
+
+</script>
